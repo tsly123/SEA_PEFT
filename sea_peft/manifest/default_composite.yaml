@@ -1,0 +1,106 @@
+version: 1
+sites:
+  - name: attn_qkv
+    pattern: "swinViT.layers*.blocks*.attn.qkv"
+    capacity_key: out_features
+    scope: block
+    families:
+      - name: lora
+        topologies:
+          - name: pa
+            levels:
+              - name: r4
+                rank: 4
+              - name: r8
+                rank: 8
+              - name: r16
+                rank: 16
+          - name: sa
+            levels:
+              - name: r4
+                rank: 4
+              - name: r8
+                rank: 8
+              - name: r16
+                rank: 16
+          - name: sapa
+            levels:
+              - name: r4
+                rank: 4
+              - name: r8
+                rank: 8
+              - name: r16
+                rank: 16
+  - name: block_norms
+    pattern: "swinViT.layers*.blocks*.norm*"
+    capacity_key: features
+    scope: block
+    families:
+      - name: affine
+        topologies:
+          - name: sa
+            levels:
+              - name: affine
+  - name: ffn_composite
+    pattern: "swinViT.layers*.blocks*.ffn_peft"
+    capacity_key: out_features
+    scope: block
+    families:
+      - name: lora
+        topologies:
+          - name: pa
+            levels:
+              - name: r4
+                rank: 4
+              - name: r8
+                rank: 8
+              - name: r16
+                rank: 16
+          - name: sa
+            levels:
+              - name: r4
+                rank: 4
+              - name: r8
+                rank: 8
+              - name: r16
+                rank: 16
+          - name: sapa
+            levels:
+              - name: r4
+                rank: 4
+              - name: r8
+                rank: 8
+              - name: r16
+                rank: 16
+      - name: adaptformer
+        topologies:
+          - name: pa
+            levels:
+              - name: b4
+                bottleneck: 4
+              - name: b8
+                bottleneck: 8
+              - name: b16
+                bottleneck: 16
+              - name: b32
+                bottleneck: 32
+          - name: sa
+            levels:
+              - name: b4
+                bottleneck: 4
+              - name: b8
+                bottleneck: 8
+              - name: b16
+                bottleneck: 16
+              - name: b32
+                bottleneck: 32
+          - name: sapa
+            levels:
+              - name: b4
+                bottleneck: 4
+              - name: b8
+                bottleneck: 8
+              - name: b16
+                bottleneck: 16
+              - name: b32
+                bottleneck: 32
