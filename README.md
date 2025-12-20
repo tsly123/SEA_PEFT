@@ -66,7 +66,7 @@ python main_fseft.py \
       --lr ${lr} \
       --visualization True
 ```
-See `main_sa_peft.py` and `main_fseft.py` for all detailed options.
+See `main_sea_peft.py` and `main_fseft.py` for all detailed options.
 
 ### Acknowledgement
 
