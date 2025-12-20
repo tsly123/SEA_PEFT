@@ -49,7 +49,7 @@ python main_sea_peft.py \
   --out_path ${out_path} \
   --dataset ${dataset} \
   --param_budget 0.05 \
-  --manifest_path sa_peft/manifest/default_composite.yaml \
+  --manifest_path sea_peft/manifest/default_composite.yaml \
 ```
 
 * To run the final fine-tuning with available optimal PEFT configs (after running search-audit-allocate above):
