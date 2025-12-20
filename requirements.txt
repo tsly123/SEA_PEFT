@@ -1,0 +1,10 @@
+numpy
+scipy
+fastremap
+opencv-python
+pillow
+tqdm
+connected-components-3d
+monai==0.9.1
+matplotlib
+pyyaml
